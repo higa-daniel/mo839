@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package irispingponggprc;
+
+message FitRequest { // Solicita treinamento
+    message NDArray {
+        bytes ndarray = 1;
+    }
+}
+
+message FitResponse { // Retorna resposta do treinamento
+    string fitResponseMsg = 2;
+}
+
+message PredictRequest { // Solicita predicao
+    string predRequest = 3;
+}
+
+message PredictResponse { // Retorna resposta da predicao
+    string predResponse = 4;
+}
+
+service IrisPingPong{
+    rpc GetServerResponseFit(FitRequest) returns (FitResponse) {}
+    rpc GetServerResponsePredict(PredictRequest) returns (PredictResponse) {}
+}
