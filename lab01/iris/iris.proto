@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package irisgprc;
+
+message FitRequest {
+    repeated float features = 1;  // Flattened 2D array of features
+    repeated int32 labels = 2;    // Array of labels
+    int32 rows = 3;               // Number of samples
+    int32 cols = 4;               // Number of features per sample
+    string model_type = 5;        // Type of model to train (e.g., "knn", "svm")
+}
+
+message FitResponse {
+    string message = 1;
+    double accuracy = 2;
+    double training_time = 3;
+    string model_info = 4;
+}
+
+service Iris {
+    rpc GetServerResponseFit(FitRequest) returns (FitResponse) {}
+}
