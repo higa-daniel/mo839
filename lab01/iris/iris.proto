@@ -28,10 +28,11 @@ message PredictRequest {
 message PredictResponse {
     string message = 1;
     double accuracy = 2;
-    double training_time = 3;
+    double prediction_time = 3;
     string model_info = 4;
 }
 
 service Iris {
     rpc GetServerResponseFit(FitRequest) returns (FitResponse) {}
+    rpc GetServerResponsePredict(PredictRequest) returns (PredictResponse) {}
 }

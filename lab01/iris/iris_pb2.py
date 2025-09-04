@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\niris.proto\x12\x08irisgprc\"^\n\nFitRequest\x12\x10\n\x08\x66\x65\x61tures\x18\x01 \x03(\x02\x12\x0e\n\x06labels\x18\x02 \x03(\x05\x12\x0c\n\x04rows\x18\x03 \x01(\x05\x12\x0c\n\x04\x63ols\x18\x04 \x01(\x05\x12\x12\n\nmodel_type\x18\x05 \x01(\t\"[\n\x0b\x46itResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\x12\x15\n\rtraining_time\x18\x03 \x01(\x01\x12\x12\n\nmodel_info\x18\x04 \x01(\t2M\n\x04Iris\x12\x45\n\x14GetServerResponseFit\x12\x14.irisgprc.FitRequest\x1a\x15.irisgprc.FitResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\niris.proto\x12\x08irisgprc\"^\n\nFitRequest\x12\x10\n\x08\x66\x65\x61tures\x18\x01 \x03(\x02\x12\x0e\n\x06labels\x18\x02 \x03(\x05\x12\x0c\n\x04rows\x18\x03 \x01(\x05\x12\x0c\n\x04\x63ols\x18\x04 \x01(\x05\x12\x12\n\nmodel_type\x18\x05 \x01(\t\"[\n\x0b\x46itResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\x12\x15\n\rtraining_time\x18\x03 \x01(\x01\x12\x12\n\nmodel_info\x18\x04 \x01(\t\"b\n\x0ePredictRequest\x12\x10\n\x08\x66\x65\x61tures\x18\x01 \x03(\x02\x12\x0e\n\x06labels\x18\x02 \x03(\x05\x12\x0c\n\x04rows\x18\x03 \x01(\x05\x12\x0c\n\x04\x63ols\x18\x04 \x01(\x05\x12\x12\n\nmodel_type\x18\x05 \x01(\t\"a\n\x0fPredictResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x10\n\x08\x61\x63\x63uracy\x18\x02 \x01(\x01\x12\x17\n\x0fprediction_time\x18\x03 \x01(\x01\x12\x12\n\nmodel_info\x18\x04 \x01(\t2\xa0\x01\n\x04Iris\x12\x45\n\x14GetServerResponseFit\x12\x14.irisgprc.FitRequest\x1a\x15.irisgprc.FitResponse\"\x00\x12Q\n\x18GetServerResponsePredict\x12\x18.irisgprc.PredictRequest\x1a\x19.irisgprc.PredictResponse\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,6 +35,10 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_FITREQUEST']._serialized_end=118
   _globals['_FITRESPONSE']._serialized_start=120
   _globals['_FITRESPONSE']._serialized_end=211
-  _globals['_IRIS']._serialized_start=213
-  _globals['_IRIS']._serialized_end=290
+  _globals['_PREDICTREQUEST']._serialized_start=213
+  _globals['_PREDICTREQUEST']._serialized_end=311
+  _globals['_PREDICTRESPONSE']._serialized_start=313
+  _globals['_PREDICTRESPONSE']._serialized_end=410
+  _globals['_IRIS']._serialized_start=413
+  _globals['_IRIS']._serialized_end=573
 # @@protoc_insertion_point(module_scope)

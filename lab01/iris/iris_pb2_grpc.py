@@ -39,12 +39,23 @@ class IrisStub(object):
                 request_serializer=iris__pb2.FitRequest.SerializeToString,
                 response_deserializer=iris__pb2.FitResponse.FromString,
                 _registered_method=True)
+        self.GetServerResponsePredict = channel.unary_unary(
+                '/irisgprc.Iris/GetServerResponsePredict',
+                request_serializer=iris__pb2.PredictRequest.SerializeToString,
+                response_deserializer=iris__pb2.PredictResponse.FromString,
+                _registered_method=True)
 
 
 class IrisServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def GetServerResponseFit(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetServerResponsePredict(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -57,6 +68,11 @@ def add_IrisServicer_to_server(servicer, server):
                     servicer.GetServerResponseFit,
                     request_deserializer=iris__pb2.FitRequest.FromString,
                     response_serializer=iris__pb2.FitResponse.SerializeToString,
+            ),
+            'GetServerResponsePredict': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetServerResponsePredict,
+                    request_deserializer=iris__pb2.PredictRequest.FromString,
+                    response_serializer=iris__pb2.PredictResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -86,6 +102,33 @@ class Iris(object):
             '/irisgprc.Iris/GetServerResponseFit',
             iris__pb2.FitRequest.SerializeToString,
             iris__pb2.FitResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetServerResponsePredict(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/irisgprc.Iris/GetServerResponsePredict',
+            iris__pb2.PredictRequest.SerializeToString,
+            iris__pb2.PredictResponse.FromString,
             options,
             channel_credentials,
             insecure,
