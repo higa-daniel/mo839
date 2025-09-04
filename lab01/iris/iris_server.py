@@ -22,6 +22,7 @@ class IrisServer(pb2_grpc.IrisServicer):
     def __init__(self):
         self.models = {}
         self.current_model = None
+        
     def GetServerResponseFit(self, request, context):
         """
         Args:
@@ -51,13 +52,44 @@ class IrisServer(pb2_grpc.IrisServicer):
         model_id = f"{model_type}_{int(time.time())}"
         self.models[model_id] = model
         self.current_model = model
-        
+
         return pb2.FitResponse(
             message=f"Model trained successfully! Model ID: {model_id}",
             accuracy=accuracy,
             training_time=training_time,
             model_info=f"{model_type} with {len(labels)} samples"
         )
+    
+    def GetServerResponsePredict(self, request, context):
+        if self.current_model is None:
+            return pb2.PredictResponse(
+                message="No model trained yet. Please train a model first.",
+                accuracy=0.0,
+                training_time=0.0,
+                model_info="None"
+        )
+        
+        # Reconstrói os dados de entrada
+        features = np.array(request.features).reshape(request.rows, request.cols)
+
+        # Faz as previsões
+        predictions = self.current_model.predict(features)
+                # Se vierem labels no request, dá para calcular acurácia
+        if request.labels:
+            labels = np.array(request.labels)
+            accuracy = accuracy_score(labels, predictions)
+        else:
+            accuracy = 0.0  # sem labels → não dá pra medir
+
+        prediction_time = time.time() - start_time
+
+        return pb2.PredictResponse(
+            message="Prediction completed successfully!",
+            accuracy=accuracy,
+            training_time=prediction_time,
+            model_info=f"Predictions: {predictions.tolist()}"
+        )
+
 
 def serve():
     """_summary_
