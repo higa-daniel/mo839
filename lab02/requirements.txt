@@ -1,0 +1,19 @@
+# ===============================
+# requirements.txt (sugestão)
+# ===============================
+# grpc
+grpcio>=1.62
+protobuf>=4.25
+
+
+# ml
+numpy>=1.24
+scikit-learn>=1.3
+
+
+# ray
+ray>=2.10
+
+# grpc
+grpcio>=1.74.0
+grpcio-tools>=1.74.0
