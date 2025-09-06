@@ -11,7 +11,6 @@ import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import IsolationForest
-from sklearn.covariance import EllipticEnvelope
 import ray
 
 import iris_pb2_grpc as pb2_grpc
@@ -29,6 +28,14 @@ class ByzantineDetector:
     def detect_byzantine(self, features, labels, client_data):
         """
         Detect Byzantine clients using 3 methods
+
+        Args:
+            features: array of float 
+            labels: array of int
+            client_data
+
+        Returns:
+            scores: return value used to detect a byzantine client
         """
 
         scores = {}
@@ -94,10 +101,10 @@ class IrisServer(pb2_grpc.IrisServicer):
 
     def __init__(self):
         self.models = {}
-        self.current_model = None
-        self.client_data = {}  # Store data from all clients
-        self.byzantine_clients = set()
-        self.detector = ByzantineDetector.remote()
+        self.current_model = None # We used KNN model
+        self.client_data = {}  # Store data from all clients in dict {client_id: {"features": X, "labels": y, ...}}.
+        self.byzantine_clients = set() # Set of reject ids
+        self.detector = ByzantineDetector.remote() # ray actor to execute the byzantine detection logic
 
     def GetServerResponseFit(self, request, context):
         """
