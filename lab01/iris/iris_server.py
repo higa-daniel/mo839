@@ -12,8 +12,6 @@ import iris_pb2 as pb2
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
-# x_treino, x_teste, y_treino, y_test = train_test_split(atributos, rotulos, test_size=0.2)
-
 class IrisServer(pb2_grpc.IrisServicer):
     """
     Setup the server
