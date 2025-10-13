@@ -1,0 +1,29 @@
+
+syntax = "proto3";
+
+package siamese;
+
+// Serviço para comparação de similaridade
+service SiameseService {
+    rpc CompareSimilarity(EmbeddingPair) returns (SimilarityResponse);
+}
+
+// Mensagem para enviar um embedding
+message Embedding {
+    repeated float vector = 1;
+    string client_id = 2;
+}
+
+// Mensagem para enviar um par de embeddings
+message EmbeddingPair {
+    Embedding embedding1 = 1;
+    Embedding embedding2 = 2;
+}
+
+// Resposta com a similaridade
+message SimilarityResponse {
+    float distance = 1;
+    bool is_similar = 2;
+    string client1_id = 3;
+    string client2_id = 4;
+}

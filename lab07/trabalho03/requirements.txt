@@ -1,0 +1,20 @@
+# Requirements para Mac M3/M2/M1 (Apple Silicon - ARM64)
+# Use: pip install -r requirements_m3.txt
+
+# TensorFlow otimizado para Mac (2.12.0 é a versão disponível)
+tensorflow-macos==2.12.0
+
+# TensorFlow Metal (opcional - para aceleração GPU do M3)
+# Descomente a linha abaixo se quiser usar a GPU
+# tensorflow-metal
+
+# Outras dependências
+numpy>=1.22.0
+matplotlib>=3.7.0
+grpcio>=1.56.0
+grpcio-tools>=1.56.0
+protobuf>=4.23.0
+
+# Opcional: Jupyter para notebooks
+jupyter>=1.0.0
+ipykernel>=6.0.0
